@@ -2,7 +2,6 @@ var video;
 
 window.addEventListener("load", function() {
 	console.log("Good job opening the window")
-
 	video = document.querySelector("#player1");
 	video.autoplay = false;
 	video.loop = false;
@@ -24,51 +23,50 @@ document.querySelector("#pause").addEventListener("click", function() {
  
 document.querySelector("#slower").addEventListener("click", function() {
 	console.log("Slow down video");
-	video.playbackRate *= .9;
+	video.playbackRate *= 0.9;
 	console.log("Speed is " + video.playbackRate);
 });
 
-document.querySelector("#faster").addEventListener("click", function(){
+document.querySelector("#faster").addEventListener("click", function() {
 	console.log("Speed up video");
-	video.playbackRate *= 1.1;
+	video.playbackRate *= 1 / 0.9;
 	console.log("Speed is " + video.playbackRate);
 });
 
-document.querySelector("#skip").addEventListener("click", function(){
+document.querySelector("#skip").addEventListener("click", function() {
 	if (video.currentTime + 10 > video.duration) {
 		video.currentTime = 0;
-	} else {
+	}
+	else {
 		video.currentTime += 10;
 	}
 	console.log("Current video time is " + video.currentTime);
 });
 
-document.querySelector("#mute").addEventListener("click", function(){
+document.querySelector("#mute").addEventListener("click", function() {
 	if (video.muted) {
 		video.muted = false;
 		document.querySelector("#mute").innerHTML = "Mute";
-		console.log("Unmute")
+		console.log("Unmute");
 
-	} else {
+	}
+	else {
 		video.muted = true;
 		document.querySelector("#mute").innerHTML = "Unmute";
-		console.log("Mute")
-
+		console.log("Mute");
 	}
 });
 
-document.querySelector("#slider").addEventListener("click", function(){
-	console.log("Volume Slider")
-	console.log("Current volume is " + video.volume)
-	video = document.querySelector("#player1"); 
-	video.volume = this.value / 100;
-	document.querySelector("#volume").innerHTML =  video.volume * 100 + "%";
+document.querySelector("#slider").addEventListener("click", function() {
+	video.volume = document.querySelector('#slider').value / 100;
+	document.querySelector('#volume').innerHTML = 100*video.volume + "%";
+	console.log("The current value is " + video.volume);
 });
 
-document.querySelector("#vintage").addEventListener("click", function(){
+document.querySelector("#vintage").addEventListener("click", function() {
 	video.classList.add("oldSchool");
 });
 
-document.querySelector("#orig").addEventListener("click", function(){
+document.querySelector("#orig").addEventListener("click", function() {
 	video.classList.remove("oldSchool");
 });
